@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+	
+	public static long maxSubarraySum(int[] arr, int n) {
+		//this is a basic question of kadane's algorithm
+		//we can two variables , one for storing the sum of the current subarray and the other to store the maximum sum
+		long msf = Long.MIN_VALUE;
+        long meh = 0;
+        for(int i=0;i<arr.length;i++)
+        {
+            meh+=(long)arr[i];
+            if(meh<0)
+            {
+                meh = 0;
+            }
+            msf = Math.max(meh, msf);
+        }
+        return msf;
+	}
+
+}
