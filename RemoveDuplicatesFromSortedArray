@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Solution {
+    public static int removeDuplicates(ArrayList<Integer> arr,int n) {
+    //hashset does not allow duplicate elements , so we add all the elements of the given arraylist into the set
+        HashSet<Integer> set = new HashSet<>(arr);
+        //then we clear the arraylist
+        arr.clear();
+        //now from the set we add the elements to the original arraylist which now does not contain any kind of duplicates
+        arr.addAll(set);
+        //we return the size of the arraylist
+        return arr.size();
+    }
+    
+    
+}
