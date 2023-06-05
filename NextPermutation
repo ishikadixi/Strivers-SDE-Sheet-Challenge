@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution 
+{
+	public static void reverse(ArrayList<Integer> perm , int low , int high)
+	{
+		while(low <= high)
+		{
+			// Swap elements at indices low and high
+			int temp = perm.get(low);
+			perm.set(low, perm.get(high));
+			perm.set(high, temp);
+			low++;
+			high--;
+		}
+	}
+
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		int index = -1;
+		int n = permutation.size();
+
+		// Find the breakpoint
+		for(int i = n - 2 ; i >= 0; i--)
+		{
+			if(permutation.get(i) < permutation.get(i + 1))
+			{
+				index = i;
+				break;
+			}
+		}
+
+		// If the breakpoint is not at the end of the permutation
+		if(index != -1) {
+			// Swap elements at index and i
+			for(int i = n - 1; i > index; i--)
+			{
+				if(permutation.get(i) > permutation.get(index))
+				{
+					int t = permutation.get(i);
+					permutation.set(i, permutation.get(index));
+					permutation.set(index, t);
+					break;
+				}
+			}
+		}
+
+		// Reverse the rest of the permutation
+		reverse(permutation, index + 1, n - 1);
+
+		return permutation;
+	}
+}
